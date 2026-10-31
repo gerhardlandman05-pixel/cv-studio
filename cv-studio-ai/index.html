@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Build a professional CV in minutes. Choose a template, add your experience and export a polished PDF.">
+<title>CV Studio — Build a CV that opens doors</title>
+<style>
+:root{--ink:#172033;--muted:#687386;--line:#e4e8ef;--bg:#f5f7fb;--brand:#3157d5;--brand2:#203fa8;--white:#fff;--soft:#eef2ff;--green:#16845b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100% - 1440px)/2));position:sticky;top:0;z-index:5}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.5px}.logo-mark{width:34px;height:34px;background:var(--brand);color:white;border-radius:10px;display:grid;place-items:center;font-weight:800}
+.top-actions{display:flex;gap:9px;align-items:center}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 15px;border-radius:10px;font-weight:650}.btn.primary{background:var(--brand);color:white;border-color:var(--brand)}.btn.primary:hover{background:var(--brand2)}.btn:focus,input:focus,textarea:focus,select:focus{outline:3px solid #b9c7ff;outline-offset:1px}
+.app{max-width:1440px;margin:24px auto;padding:0 22px;display:grid;grid-template-columns:minmax(320px,470px) minmax(420px,1fr);gap:24px;align-items:start}
+.panel,.preview-panel{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 5px 24px #1c2b4b08}.panel{overflow:hidden}.panel-head{padding:22px 22px 15px;border-bottom:1px solid var(--line)}h1{font-size:23px;margin:0 0 5px;letter-spacing:-.7px}.sub{color:var(--muted);margin:0;font-size:13px}.tabs{display:flex;gap:5px;padding:12px 18px;border-bottom:1px solid var(--line);overflow:auto}.tab{white-space:nowrap;border:0;background:transparent;color:var(--muted);padding:8px 11px;border-radius:8px;font-weight:650}.tab.active{background:var(--soft);color:var(--brand)}
+.form-content{padding:19px 22px 24px}.section-title{font-size:14px;font-weight:800;margin:0 0 14px}.field{margin-bottom:13px}.field label{display:block;font-size:12px;font-weight:750;color:#4b5669;margin-bottom:5px}.field input,.field textarea,.field select{width:100%;border:1px solid #dce1ea;border-radius:9px;padding:10px 11px;background:white;color:var(--ink)}.field textarea{min-height:83px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:#a0a8b6}.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}.hint{font-size:11px;color:var(--muted);margin-top:5px}.repeat-card{border:1px solid var(--line);border-radius:11px;padding:13px;margin:0 0 12px;background:#fcfdff}.repeat-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:750;margin-bottom:10px}.remove{border:0;background:#fff0f0;color:#b42318;border-radius:7px;padding:4px 8px;font-size:12px}.add{border:1px dashed #aab8e9;background:#f7f8ff;color:var(--brand);width:100%;padding:10px;border-radius:9px;font-weight:700}.divider{border:0;border-top:1px solid var(--line);margin:20px 0}.template-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.template{border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px;text-align:center;color:var(--muted);font-size:12px}.template.selected{border-color:var(--brand);background:#f8f9ff;color:var(--brand)}.template-swatch{height:58px;border-radius:5px;margin-bottom:6px;background:linear-gradient(90deg,#263d70 30%,#f2f4f8 30%)}.template:nth-child(2) .template-swatch{background:linear-gradient(90deg,#fff 70%,#e9eef9 70%);border:1px solid var(--line)}.template:nth-child(3) .template-swatch{background:linear-gradient(90deg,#e6eff0 30%,#fff 30%);border:1px solid var(--line)}
+.preview-panel{position:sticky;top:90px;overflow:hidden}.preview-head{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.preview-head strong{font-size:13px}.preview-head span{font-size:11px;color:var(--muted)}.paper-wrap{background:#edf0f5;padding:22px;min-height:760px;display:flex;justify-content:center;overflow:auto}.paper{background:#fff;width:100%;max-width:690px;min-height:890px;box-shadow:0 5px 22px #1d2a421c;padding:48px 52px;color:#202b3c;font-family:Arial,sans-serif}.cv-header{border-bottom:2px solid #263d70;padding-bottom:18px;margin-bottom:22px}.cv-name{font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-.8px;margin:0 0 7px}.cv-role{font-size:14px;color:#53617a;margin-bottom:12px}.cv-contact{font-size:10px;color:#5e6878;display:flex;flex-wrap:wrap;gap:6px 13px}.cv-section{margin:0 0 19px}.cv-section h3{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#263d70;border-bottom:1px solid #dce2ed;padding-bottom:5px;margin:0 0 9px}.cv-section p{font-size:11px;line-height:1.55;margin:0;white-space:pre-line}.cv-entry{margin:0 0 11px}.cv-entry-top{display:flex;justify-content:space-between;gap:12px;font-size:11px;font-weight:700}.cv-entry-sub{font-size:10px;color:#647084;margin:2px 0 4px}.cv-entry-desc{font-size:10.5px;line-height:1.5;white-space:pre-line}.skills{font-size:11px;line-height:1.7}.footer-note{text-align:center;color:#8791a2;font-size:11px;padding:13px}
+.hidden{display:none!important}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#172033;color:white;padding:11px 16px;border-radius:10px;box-shadow:0 8px 25px #0002;z-index:10;font-size:13px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.preview-panel{position:static}.paper-wrap{padding:12px}.paper{padding:30px 25px;min-height:700px}.topbar{padding:0 14px}.top-actions .btn{padding:8px 10px;font-size:12px}}
+
+/* Additional CV layouts */
+.template-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+.template-swatch{position:relative}
+.template:nth-child(4) .template-swatch{background:linear-gradient(180deg,#f2f4f8 0 23%,#fff 23%);border:1px solid var(--line)}
+.template:nth-child(5) .template-swatch{background:linear-gradient(90deg,#172033 0 28%,#fff 28%);border:1px solid var(--line)}
+.template:nth-child(6) .template-swatch{background:linear-gradient(90deg,#3157d5 0 34%,#fff 34%);border:1px solid var(--line)}
+.template:nth-child(7) .template-swatch{background:linear-gradient(180deg,#eef2f8 0 18%,#fff 18%);border:1px solid var(--line)}
+.template:nth-child(8) .template-swatch{background:linear-gradient(90deg,#f5eee8 0 30%,#fff 30%);border:1px solid var(--line)}
+.paper{--cv-accent:#263d70}
+.paper.template-minimal{padding:54px 58px}.paper.template-minimal .cv-header{border:0!important;padding-bottom:10px}.paper.template-minimal .cv-name{font-weight:500;letter-spacing:0}
+.paper.template-modern{border-top:9px solid var(--cv-accent);padding-top:40px}.paper.template-modern .cv-name{letter-spacing:-1.2px}
+.paper.template-clean .cv-header{border-bottom-width:1px!important}.paper.template-clean .cv-name{font-weight:600}
+.paper.template-executive{border-top:5px double var(--cv-accent);padding:42px 48px}.paper.template-executive .cv-header{text-align:center;border-bottom:1px solid #cbd2df!important}.paper.template-executive .cv-contact{justify-content:center}.paper.template-executive .cv-section h3{letter-spacing:1.8px}
+.paper.template-sidebar{border-left:15px solid var(--cv-accent);padding-left:38px}.paper.template-sidebar .cv-header{border-bottom:0!important;background:#f3f5fa;padding:20px;margin:-48px -52px 24px -38px}.paper.template-sidebar .cv-section h3{border-bottom:0;border-left:3px solid var(--cv-accent);padding-left:8px}
+.paper.template-compact{padding:34px 42px}.paper.template-compact .cv-header{padding-bottom:10px;margin-bottom:13px}.paper.template-compact .cv-name{font-size:25px}.paper.template-compact .cv-section{margin-bottom:11px}.paper.template-compact .cv-entry{margin-bottom:7px}
+.paper.template-elegant{font-family:Georgia,serif;padding:48px 54px}.paper.template-elegant .cv-name{font-family:Georgia,serif;font-weight:500;letter-spacing:.2px}.paper.template-elegant .cv-header{border-bottom:1px solid var(--cv-accent)!important}.paper.template-elegant .cv-section h3{font-family:Arial,sans-serif;letter-spacing:2px}
+/* Dark theme applies to the editor; the printable CV stays white for legibility. */
+body.dark{--ink:#e7ebf4;--muted:#aab4c5;--line:#30394b;--bg:#111722;--soft:#26334c;background:var(--bg);color:var(--ink)}
+body.dark .topbar,body.dark .panel,body.dark .preview-panel{background:#1a2331;border-color:var(--line);color:var(--ink)}
+body.dark .btn{background:#222d3e;color:var(--ink);border-color:#3b465a}body.dark .btn.primary{background:var(--brand);color:white;border-color:var(--brand)}
+body.dark .tab{color:#b6c0d0}body.dark .tab.active{background:#293958;color:#b9caff}
+body.dark .field label{color:#c6cfdd}body.dark .field input,body.dark .field textarea,body.dark .field select{background:#111a27;color:#edf1f8;border-color:#3a465a}
+body.dark .repeat-card{background:#172130;border-color:#354155}body.dark .remove{background:#432a31;color:#ffb8bd}body.dark .add{background:#202c40;border-color:#53658c;color:#c1d0ff}
+body.dark .template{background:#202a39;color:#c1cada;border-color:#3a465a}body.dark .template.selected{background:#293958;color:#c1d0ff;border-color:#7795ed}
+body.dark .paper-wrap{background:#101722}body.dark .footer-note{color:#9ba7ba}
+
+@media print{body{background:#fff}.topbar,.panel,.preview-head,.footer-note{display:none!important}.app{display:block;margin:0;padding:0}.preview-panel{border:0;box-shadow:none;position:static}.paper-wrap{padding:0;background:#fff;display:block}.paper{max-width:none;width:100%;min-height:0;box-shadow:none;padding:12mm 14mm;margin:0}.cv-section,.cv-entry{break-inside:avoid}@page{size:A4;margin:0}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="logo"><span class="logo-mark">C</span> CV Studio</div>
+  <div class="top-actions"><button class="btn" id="themeBtn" type="button" aria-pressed="false">☾ Dark mode</button><button class="btn" id="saveBtn">Save draft</button><button class="btn primary" id="pdfBtn">Download PDF ↗</button></div>
+</header>
+<main class="app">
+<section class="panel">
+  <div class="panel-head"><h1>Build your CV</h1><p class="sub">Add your details and watch your professional CV update live.</p></div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="personal">Personal</button><button class="tab" data-tab="experience">Experience</button><button class="tab" data-tab="education">Education</button><button class="tab" data-tab="skills">Skills</button><button class="tab" data-tab="coverletter">Cover letter</button><button class="tab" data-tab="style">Design</button>
+  </nav>
+  <div class="form-content">
+    <div class="tab-content" id="personal">
+      <p class="section-title">Personal information</p>
+      <div class="field"><label for="name">Full name *</label><input id="name" placeholder="e.g. Alex Morgan"></div>
+      <div class="field"><label for="role">Professional title</label><input id="role" placeholder="e.g. Junior Web Developer"></div>
+      <div class="two"><div class="field"><label for="email">Email</label><input id="email" type="email" placeholder="alex@email.com"></div><div class="field"><label for="phone">Phone</label><input id="phone" placeholder="+27 00 000 0000"></div></div>
+      <div class="two"><div class="field"><label for="location">Location</label><input id="location" placeholder="City, Country"></div><div class="field"><label for="website">Website / LinkedIn</label><input id="website" placeholder="linkedin.com/in/you"></div></div>
+      <div class="field"><label for="summary">Professional summary</label><textarea id="summary" placeholder="Write 2–4 sentences about your strengths, experience and career goals."></textarea><div class="hint">Tip: Focus on what you can contribute, not just what you want.</div></div>
+    </div>
+    <div class="tab-content hidden" id="experience">
+      <p class="section-title">Work experience</p><div id="experienceList"></div><button class="add" id="addExperience">＋ Add experience</button>
+      <p class="hint">No work experience yet? You can leave this section empty or add volunteering, projects or internships.</p>
+    </div>
+    <div class="tab-content hidden" id="education">
+      <p class="section-title">Education</p><div id="educationList"></div><button class="add" id="addEducation">＋ Add education</button>
+    </div>
+    <div class="tab-content hidden" id="skills">
+      <p class="section-title">Skills and additional information</p>
+      <div class="field"><label for="skillsInput">Skills (separate with commas)</label><textarea id="skillsInput" placeholder="Communication, HTML, Customer service, Problem solving"></textarea></div>
+      <div class="field"><label for="languages">Languages</label><input id="languages" placeholder="English (fluent), Afrikaans (conversational)"></div>
+      <div class="field"><label for="projects">Projects, volunteering or achievements</label><textarea id="projects" placeholder="Describe a relevant project, achievement or volunteer role."></textarea></div>
+      <div class="field"><label for="references">References</label><input id="references" placeholder="Available on request"></div>
+    </div>
+    <div class="tab-content hidden" id="coverletter">
+      <p class="section-title">Cover letter builder</p>
+      <p class="hint" style="margin:0 0 14px">Create a tailored letter to accompany your CV. Add your details and review the letter in the preview.</p>
+      <div class="field"><label for="letterCompany">Company / organisation</label><input id="letterCompany" placeholder="Company name"></div>
+      <div class="field"><label for="letterRole">Position you're applying for</label><input id="letterRole" placeholder="e.g. Junior Administrator"></div>
+      <div class="field"><label for="letterContact">Hiring manager (optional)</label><input id="letterContact" placeholder="Hiring manager's name"></div>
+      <div class="field"><label for="letterBody">Cover letter text</label><textarea id="letterBody" style="min-height:190px" placeholder="Dear Hiring Manager,&#10;&#10;I am writing to apply for...&#10;&#10;Kind regards,&#10;Your name"></textarea></div>
+      <button class="btn" type="button" id="showCvBtn" style="margin-left:6px">Show CV preview</button>
+    </div>
+    <div class="tab-content hidden" id="style">
+      <p class="section-title">Choose a CV design</p>
+      <div class="template-row">
+        <button class="template selected" data-template="classic"><div class="template-swatch"></div>Classic</button>
+        <button class="template" data-template="minimal"><div class="template-swatch"></div>Minimal</button>
+        <button class="template" data-template="modern"><div class="template-swatch"></div>Modern</button>
+        <button class="template" data-template="clean"><div class="template-swatch"></div>Clean</button>
+        <button class="template" data-template="executive"><div class="template-swatch"></div>Executive</button>
+        <button class="template" data-template="sidebar"><div class="template-swatch"></div>Sidebar</button>
+        <button class="template" data-template="compact"><div class="template-swatch"></div>Compact</button>
+        <button class="template" data-template="elegant"><div class="template-swatch"></div>Elegant</button>
+      </div>
+      <hr class="divider">
+      <div class="field"><label for="accent">Accent colour</label><select id="accent"><option value="#263d70">Navy</option><option value="#3157d5">Blue</option><option value="#176b5b">Forest green</option><option value="#633d78">Purple</option><option value="#343a40">Charcoal</option></select></div>
+      <p class="hint">Choose a simple, readable design. Your PDF will be formatted for A4 paper.</p>
+    </div>
+  </div>
+</section>
+<section class="preview-panel">
+  <div class="preview-head"><div><strong id="previewTitle">Live CV preview</strong><br><span id="previewSubtitle">Your CV updates as you type</span></div><span>A4 · Professional</span></div>
+  <div class="paper-wrap"><article class="paper" id="paper">
+    <header class="cv-header"><h2 class="cv-name" id="pName">Your Name</h2><div class="cv-role" id="pRole">Professional title</div><div class="cv-contact" id="pContact">Email · Phone · Location</div></header>
+    <section class="cv-section" id="summarySection"><h3>Profile</h3><p id="pSummary">Your professional summary will appear here. Keep it concise and relevant to the role you're applying for.</p></section>
+    <section class="cv-section" id="experienceSection"><h3>Experience</h3><div id="pExperience"><p>Add your work experience to display it here.</p></div></section>
+    <section class="cv-section" id="educationSection"><h3>Education</h3><div id="pEducation"><p>Add your education to display it here.</p></div></section>
+    <section class="cv-section" id="skillsSection"><h3>Skills</h3><div class="skills" id="pSkills">Your skills will appear here.</div></section>
+    <section class="cv-section" id="extrasSection"><h3>Additional information</h3><div id="pExtras"></div></section>
+    <section id="letterPreview" class="hidden" style="font-family:Arial,sans-serif;color:#202b3c">
+      <h2 id="letterPreviewName" style="font-size:25px;margin:0 0 5px"></h2>
+      <div id="letterPreviewContact" style="font-size:10px;color:#667085;padding-bottom:17px;border-bottom:2px solid #263d70"></div>
+      <div id="letterPreviewDate" style="font-size:11px;margin:25px 0 18px"></div>
+      <div id="letterPreviewTo" style="font-size:11px;margin-bottom:20px"></div>
+      <div id="letterPreviewBody" style="font-size:12px;line-height:1.8;white-space:pre-wrap"></div>
+    </section>
+  </article></div><div class="footer-note">CV Studio · Your information stays in this browser unless you choose to export it.</div>
+</section>
+</main>
+<div class="toast hidden" id="toast" role="status"></div>
+<script>
+const $=id=>document.getElementById(id);
+let experiences=[],educations=[],template='classic';
+const fields=['name','role','email','phone','location','website','summary','skillsInput','languages','projects','references','letterCompany','letterRole','letterContact','letterBody'];
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.remove('hidden');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.add('hidden'),2400)}
+function entryCard(type,item,index){const exp=type==='experience';const fields=exp?[['title','Job title','e.g. Sales assistant'],['company','Company','Company name'],['dates','Dates','2023 – 2024'],['description','What you did','Use short bullet-style statements.']]:[['qualification','Qualification','e.g. National Senior Certificate'],['school','Institution','School or college'],['dates','Dates','2020 – 2024'],['details','Details','Subjects, achievements or relevant coursework.']];return `<div class="repeat-card"><div class="repeat-head">${exp?'Experience':'Education'} ${index+1}<button class="remove" data-remove="${type}" data-index="${index}">Remove</button></div>${fields.map(([key,label,ph])=>`<div class="field"><label>${label}</label>${key==='description'||key==='details'?`<textarea data-type="${type}" data-index="${index}" data-key="${key}" placeholder="${ph}">${esc(item[key])}</textarea>`:`<input data-type="${type}" data-index="${index}" data-key="${key}" placeholder="${ph}" value="${esc(item[key])}">`}</div>`).join('')}</div>`}
+function renderLists(){$('experienceList').innerHTML=experiences.map((x,i)=>entryCard('experience',x,i)).join('');$('educationList').innerHTML=educations.map((x,i)=>entryCard('education',x,i)).join('')}
+function val(id){return $(id).value.trim()}
+function section(id,show){$(id).classList.toggle('hidden',!show)}
+function update(){
+ const name=val('name'),role=val('role'),summary=val('summary'),skills=val('skillsInput');
+ $('pName').textContent=name||'Your Name';$('pRole').textContent=role||'Professional title';
+ const contact=['email','phone','location','website'].map(val).filter(Boolean);$('pContact').textContent=contact.join('  ·  ')||'Email · Phone · Location';
+ $('pSummary').textContent=summary||'Your professional summary will appear here. Keep it concise and relevant to the role you are applying for.';section('summarySection',!!summary);
+ const exp=experiences.filter(x=>Object.values(x).some(Boolean));$('pExperience').innerHTML=exp.length?exp.map(x=>`<div class="cv-entry"><div class="cv-entry-top"><span>${esc(x.title||'Role')}</span><span>${esc(x.dates)}</span></div><div class="cv-entry-sub">${esc(x.company)}</div><div class="cv-entry-desc">${esc(x.description)}</div></div>`).join(''):'<p>Add your work experience to display it here.</p>';section('experienceSection',exp.length>0);
+ const edu=educations.filter(x=>Object.values(x).some(Boolean));$('pEducation').innerHTML=edu.length?edu.map(x=>`<div class="cv-entry"><div class="cv-entry-top"><span>${esc(x.qualification||'Qualification')}</span><span>${esc(x.dates)}</span></div><div class="cv-entry-sub">${esc(x.school)}</div><div class="cv-entry-desc">${esc(x.details)}</div></div>`).join(''):'<p>Add your education to display it here.</p>';section('educationSection',edu.length>0);
+ $('pSkills').textContent=skills||'Your skills will appear here.';section('skillsSection',!!skills);
+ const extras=[['Languages',val('languages')],['Projects / achievements',val('projects')],['References',val('references')]].filter(x=>x[1]);
+ $('pExtras').innerHTML=extras.map(x=>`<p style="margin:0 0 6px;font-size:10.5px"><b>${x[0]}:</b> ${esc(x[1])}</p>`).join('');section('extrasSection',extras.length>0);
+ const accent=$('accent').value;document.querySelector('.cv-header').style.borderColor=accent;document.querySelectorAll('.cv-section h3').forEach(x=>x.style.color=accent);
+ updateLetter();
+ $('paper').className='paper template-'+template;
+ $('paper').style.setProperty('--cv-accent',accent);
+}
+fields.forEach(id=>$(id).addEventListener('input',()=>{update();if(previewMode==='letter')updateLetter()}));
+$('accent').addEventListener('change',update);
+$('addExperience').onclick=()=>{experiences.push({title:'',company:'',dates:'',description:''});renderLists();update()};
+$('addEducation').onclick=()=>{educations.push({qualification:'',school:'',dates:'',details:''});renderLists();update()};
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.type){const arr=t.dataset.type==='experience'?experiences:educations;arr[+t.dataset.index][t.dataset.key]=t.value;update()}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(b){const arr=b.dataset.remove==='experience'?experiences:educations;arr.splice(+b.dataset.index,1);renderLists();update()}});
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.tab-content').forEach(x=>x.classList.toggle('hidden',x.id!==b.dataset.tab))});
+document.querySelectorAll('.template').forEach(b=>b.onclick=()=>{template=b.dataset.template;document.querySelectorAll('.template').forEach(x=>x.classList.toggle('selected',x===b));update()});
+
+let previewMode='cv';
+function updateLetter(){
+ $('letterPreviewName').textContent=val('name')||'Your Name';
+ $('letterPreviewContact').textContent=[val('email'),val('phone'),val('location'),val('website')].filter(Boolean).join('  ·  ');
+ $('letterPreviewDate').textContent=new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+ $('letterPreviewTo').textContent=[val('letterContact')||'Hiring Manager',val('letterCompany')].filter(Boolean).join('\n');
+ $('letterPreviewBody').textContent=val('letterBody')||'Your cover letter will appear here. Add your message in the Cover letter tab.';
+}
+function setPreview(mode){
+ previewMode=mode;
+ const isLetter=mode==='letter';
+ $('letterPreview').classList.toggle('hidden',!isLetter);
+ ['pName','pRole','pContact','summarySection','experienceSection','educationSection','skillsSection','extrasSection'].forEach(id=>{if($(id))$(id).classList.toggle('hidden',isLetter)});
+ $('previewTitle').textContent=isLetter?'Cover letter preview':'Live CV preview';
+ $('previewSubtitle').textContent=isLetter?'Your cover letter updates as you type':'Your CV updates as you type';
+ updateLetter();
+}
+function collect(){const data={};fields.forEach(id=>data[id]=$(id).value);data.experiences=experiences;data.educations=educations;data.template=template;data.accent=val('accent');return data}
+function load(data){fields.forEach(id=>{if(data[id]!==undefined)$(id).value=data[id]});experiences=data.experiences||[];educations=data.educations||[];template=data.template||'classic';$('accent').value=data.accent||'#263d70';document.querySelectorAll('.template').forEach(x=>x.classList.toggle('selected',x.dataset.template===template));renderLists();update()}
+$('saveBtn').onclick=()=>{try{localStorage.setItem('cvStudioDraft',JSON.stringify(collect()));toast('Draft saved on this device.')}catch(e){toast('Could not save draft in this browser.')}};
+$('pdfBtn').onclick=()=>{if(!val('name')){toast('Add your name before exporting.');$('name').focus();return}window.print()};
+
+$('showCvBtn').onclick=()=>{setPreview('cv');document.querySelector('[data-tab="personal"]').click()};
+document.querySelector('[data-tab="coverletter"]').addEventListener('click',()=>setPreview('letter'));
+document.querySelectorAll('.tab').forEach(b=>{if(b.dataset.tab!=='coverletter')b.addEventListener('click',()=>setPreview('cv'))});
+function setTheme(mode){document.body.classList.toggle('dark',mode==='dark');$('themeBtn').textContent=mode==='dark'?'☀ Light mode':'☾ Dark mode';$('themeBtn').setAttribute('aria-pressed',String(mode==='dark'));try{localStorage.setItem('cvStudioTheme',mode)}catch(e){}}
+$('themeBtn').onclick=()=>setTheme(document.body.classList.contains('dark')?'light':'dark');
+try{setTheme(localStorage.getItem('cvStudioTheme')==='dark'?'dark':'light')}catch(e){setTheme('light')}
+try{const saved=localStorage.getItem('cvStudioDraft');if(saved)load(JSON.parse(saved));else{experiences=[];educations=[];renderLists();update()}}catch(e){renderLists();update()}
+</script>
+</body>
+</html>
